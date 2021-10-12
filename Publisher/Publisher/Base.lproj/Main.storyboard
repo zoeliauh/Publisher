@@ -135,47 +135,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="input title" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iy0-WK-rfd">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="input title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iy0-WK-rfd">
                                 <rect key="frame" x="36" y="124" width="342" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="input catagory" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jsn-hg-oFF">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="input catagory" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jsn-hg-oFF">
                                 <rect key="frame" x="36" y="162" width="342" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drf-9u-iqa">
-                                <rect key="frame" x="36" y="200" width="342" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="jHD-aT-OHT"/>
-                                </constraints>
-                                <string key="text">article contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle content</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZR-Lj-tHh">
-                                <rect key="frame" x="36" y="433" width="342" height="31"/>
+                                <rect key="frame" x="36" y="653" width="342" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="publish"/>
                                 <connections>
                                     <action selector="inputPublishButtonPressed:" destination="fcM-8p-qAY" eventType="touchUpInside" id="Bdt-3E-tYq"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="input content" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oEe-DM-LlL">
+                                <rect key="frame" x="36" y="200" width="342" height="449"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <color key="tintColor" systemColor="systemBlueColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0Vv-Ad-NBG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="0Vv-Ad-NBG" firstAttribute="trailing" secondItem="oEe-DM-LlL" secondAttribute="trailing" constant="36" id="0q0-hv-TBf"/>
                             <constraint firstItem="iy0-WK-rfd" firstAttribute="top" secondItem="0Vv-Ad-NBG" secondAttribute="top" constant="36" id="8qe-UD-3tu"/>
+                            <constraint firstItem="oEe-DM-LlL" firstAttribute="top" secondItem="Jsn-hg-oFF" secondAttribute="bottom" constant="4" id="96M-m9-jGY"/>
                             <constraint firstItem="FZR-Lj-tHh" firstAttribute="leading" secondItem="0Vv-Ad-NBG" secondAttribute="leading" constant="36" id="C2E-Or-pb4"/>
+                            <constraint firstItem="FZR-Lj-tHh" firstAttribute="top" secondItem="oEe-DM-LlL" secondAttribute="bottom" constant="4" id="GLE-Jr-yLo"/>
                             <constraint firstItem="Jsn-hg-oFF" firstAttribute="leading" secondItem="0Vv-Ad-NBG" secondAttribute="leading" constant="36" id="HLc-Vn-Dxa"/>
-                            <constraint firstItem="drf-9u-iqa" firstAttribute="leading" secondItem="0Vv-Ad-NBG" secondAttribute="leading" constant="36" id="JxI-Zd-wfE"/>
-                            <constraint firstItem="drf-9u-iqa" firstAttribute="top" secondItem="Jsn-hg-oFF" secondAttribute="bottom" constant="4" id="L4U-f5-XfX"/>
-                            <constraint firstItem="0Vv-Ad-NBG" firstAttribute="trailing" secondItem="drf-9u-iqa" secondAttribute="trailing" constant="36" id="Tjw-lg-hJT"/>
+                            <constraint firstItem="oEe-DM-LlL" firstAttribute="leading" secondItem="0Vv-Ad-NBG" secondAttribute="leading" constant="36" id="MN9-dp-pYn"/>
                             <constraint firstItem="0Vv-Ad-NBG" firstAttribute="trailing" secondItem="Jsn-hg-oFF" secondAttribute="trailing" constant="36" id="are-gf-306"/>
-                            <constraint firstItem="drf-9u-iqa" firstAttribute="top" secondItem="Jsn-hg-oFF" secondAttribute="bottom" constant="4" id="bRV-KT-HzU"/>
+                            <constraint firstItem="0Vv-Ad-NBG" firstAttribute="bottom" secondItem="FZR-Lj-tHh" secondAttribute="bottom" priority="997" constant="178" id="bS8-bY-hnh"/>
                             <constraint firstItem="iy0-WK-rfd" firstAttribute="leading" secondItem="0Vv-Ad-NBG" secondAttribute="leading" constant="36" id="d7D-Up-dI0"/>
-                            <constraint firstItem="0Vv-Ad-NBG" firstAttribute="bottom" secondItem="FZR-Lj-tHh" secondAttribute="bottom" constant="398" id="hbd-sN-ZZo"/>
                             <constraint firstItem="0Vv-Ad-NBG" firstAttribute="trailing" secondItem="iy0-WK-rfd" secondAttribute="trailing" constant="36" id="oPh-OB-PqY"/>
                             <constraint firstItem="Jsn-hg-oFF" firstAttribute="top" secondItem="iy0-WK-rfd" secondAttribute="bottom" constant="4" id="uLL-bK-PZl"/>
                             <constraint firstItem="0Vv-Ad-NBG" firstAttribute="trailing" secondItem="FZR-Lj-tHh" secondAttribute="trailing" constant="36" id="xNL-7d-oeV"/>
@@ -184,14 +183,14 @@
                     <navigationItem key="navigationItem" id="7B5-Sq-YWB"/>
                     <connections>
                         <outlet property="inputCatagoryTextField" destination="Jsn-hg-oFF" id="9a0-C9-GL8"/>
-                        <outlet property="inputContentTextField" destination="drf-9u-iqa" id="a4X-vn-3jf"/>
+                        <outlet property="inputContentTextView" destination="oEe-DM-LlL" id="9AO-XI-Ver"/>
                         <outlet property="inputPublishButton" destination="FZR-Lj-tHh" id="14x-Ld-12S"/>
                         <outlet property="inputTitleTextField" destination="iy0-WK-rfd" id="l8m-sk-2w6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkf-bc-03h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1907" y="84"/>
+            <point key="canvasLocation" x="1905.7971014492755" y="83.705357142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8Bg-ou-EyG">
@@ -216,8 +215,14 @@
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

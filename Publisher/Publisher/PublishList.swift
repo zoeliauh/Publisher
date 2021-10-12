@@ -10,7 +10,7 @@ import Firebase
 
 struct PublishList {
     
-    var author: String? = "AKA小安老師"
+    var author: [Author]
     
     var title: String
     
@@ -20,6 +20,14 @@ struct PublishList {
     
     var contents: String
     
-    var createdTime: FieldValue
+    var createdTime: FieldValue = FieldValue.serverTimestamp()
+}
 
+struct Author {
+    
+    var email: String = "wayne@school.appworks.tw"
+    
+    var id: String = "waynechen323"
+    
+    var name: String = "AKA小安老師"
 }
