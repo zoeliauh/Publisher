@@ -16,15 +16,9 @@ class HomePageViewController: UIViewController {
     var db: Firestore!
     
     var createdTime = NSDate().timeIntervalSince1970
-    
-//    var timeInterval = TimeInterval(createdTime)
-//    var date = Date(timeIntervalSince1970: timeInterval)
+
     var dateFormatter = DateFormatter()
-//    dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-//    var today = dateFormatter.string(from: date)
 
-
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +29,13 @@ class HomePageViewController: UIViewController {
         
         getRealTimePublishLists()
         readPublishLists()
+        refreshTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refreshTableView()
     }
 
     var publishList = PublishList(author: [], title: "", id: "", catagory: "", contents: "", createdTime: 0.0)
@@ -53,11 +54,22 @@ class HomePageViewController: UIViewController {
     
     var categoryLists: [String] = []
     
-    var createdTimeList: [String] = []
+    var createdTimeList: [TimeInterval] = []
     
     @IBAction func publishButtonPressed(_ sender: Any) {
         
         // present to PublishPage by segue
+    }
+    
+    func refreshTableView() {
+        
+        let dates = createdTimeList.compactMap{ $0 }
+        
+        let sortedDates = dates.sorted { $0 > $1 }
+
+        createdTimeList.sorted(by: { $0 < $1 } )
+        
+        publishTableView.reloadData()
     }
     
     // MARK: - read the data from firebase
@@ -94,7 +106,7 @@ class HomePageViewController: UIViewController {
                     titleLists.append(title)
                     contentLists.append(content)
                     categoryLists.append(category)
-                    createdTimeList.append(createdTime.description)
+                    createdTimeList.append(createdTime)
                 }
             }
         }
@@ -112,6 +124,7 @@ class HomePageViewController: UIViewController {
             titleLists = []
             categoryLists = []
             contentLists = []
+            createdTimeList = []
             
             documents.forEach { document in
                                 
@@ -141,7 +154,7 @@ class HomePageViewController: UIViewController {
                 titleLists.append(title)
                 categoryLists.append(category)
                 contentLists.append(content)
-                createdTimeList.append(createdTime.description)
+                createdTimeList.append(createdTime)
 
             }
             print("===========================================")
