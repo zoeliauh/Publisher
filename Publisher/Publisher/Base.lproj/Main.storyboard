@@ -101,9 +101,9 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKP-TH-lYA">
-                                <rect key="frame" x="326" y="815" width="72" height="31"/>
+                                <rect key="frame" x="354" y="815" width="44" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Publish"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system"/>
                                 <connections>
                                     <action selector="publishButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4w9-rr-1pH"/>
                                     <segue destination="fcM-8p-qAY" kind="show" identifier="PublishButtonSegue" id="qIX-0f-7wv"/>
@@ -215,6 +215,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

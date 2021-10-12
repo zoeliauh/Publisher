@@ -15,7 +15,9 @@ class HomePageViewController: UIViewController {
     
     var db: Firestore!
     
-    let date = Date(timeIntervalSince1970: TimeInterval(NSDate().timeIntervalSince1970))
+    var createdTime = NSDate().timeIntervalSince1970
+    
+    let date = NSDate().timeIntervalSince1970
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,7 @@ class HomePageViewController: UIViewController {
         readPublishLists()
     }
 
-    var publishList = PublishList(author: [], title: "", id: "", catagory: "", contents: "")
+    var publishList = PublishList(author: [], title: "", id: "", catagory: "", contents: "", createdTime: 0.0)
     
     var author = Author()
     
@@ -43,7 +45,9 @@ class HomePageViewController: UIViewController {
     
     var contentLists: [String] = []
     
-    var categoryList: [String] = []
+    var categoryLists: [String] = []
+    
+    var createdTimeList: [String] = []
     
     @IBAction func publishButtonPressed(_ sender: Any) {
         
@@ -75,9 +79,16 @@ class HomePageViewController: UIViewController {
                     guard let category = i.get("category") as? String else {
                         return
                     }
+                    
+                    guard let createdTime = i.get("createdTime") as? TimeInterval else {
+                        return
+                    }
+                    
+                    print(i.data())
                     titleLists.append(title)
                     contentLists.append(content)
-                    categoryList.append(category)
+                    categoryLists.append(category)
+                    createdTimeList.append(createdTime.description)
                 }
             }
         }
@@ -93,7 +104,7 @@ class HomePageViewController: UIViewController {
             }
 
             titleLists = []
-            categoryList = []
+            categoryLists = []
             contentLists = []
             
             documents.forEach { document in
@@ -117,9 +128,15 @@ class HomePageViewController: UIViewController {
                     return
                 }
                 
+                guard let createdTime = document.get("createdTime") as? TimeInterval else {
+                    return
+                }
+                
                 titleLists.append(title)
-                categoryList.append(category)
+                categoryLists.append(category)
                 contentLists.append(content)
+                createdTimeList.append(createdTime.description)
+
             }
             print("===========================================")
         }
@@ -128,7 +145,7 @@ class HomePageViewController: UIViewController {
 
 // MARK: - TableViewDataSource
 extension HomePageViewController: UITableViewDataSource {
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titleLists.count
     }
@@ -137,9 +154,9 @@ extension HomePageViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArtitleTableViewCell", for: indexPath) as? ArtitleTableViewCell else { fatalError("can not dequeue cell") }
         
         cell.articleTitleLabel.text = titleLists[indexPath.row]
-        cell.authorNameLabel.text = "Wayne Chen"
-        cell.createdTimeLabel.text = "\(date)"
-        cell.catagoryLabel.text = categoryList[indexPath.row]
+        cell.authorNameLabel.text = author.name
+        cell.createdTimeLabel.text = createdTimeList[indexPath.row]
+        cell.catagoryLabel.text = categoryLists[indexPath.row]
         cell.artitleContentTextView.text = contentLists[indexPath.row]
         
         return cell

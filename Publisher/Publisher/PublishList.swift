@@ -20,7 +20,7 @@ struct PublishList {
     
     var contents: String
     
-    var createdTime: FieldValue = FieldValue.serverTimestamp()
+    var createdTime: TimeInterval
 }
 
 struct Author {
