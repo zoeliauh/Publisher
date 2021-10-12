@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home Page View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Publisher" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomePageViewController" customModule="Publisher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="237" id="dRr-8P-2V1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ArtitleTableViewCell" rowHeight="237" id="dRr-8P-2V1" customClass="ArtitleTableViewCell" customModule="Publisher" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="237"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRr-8P-2V1" id="VUY-n8-6l8">
@@ -39,8 +39,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="create name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4Y-gW-ZH4">
-                                                    <rect key="frame" x="36" y="85" width="95" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="created time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4Y-gW-ZH4">
+                                                    <rect key="frame" x="36" y="85" width="96" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -87,6 +87,13 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="utj-rm-BfQ" secondAttribute="trailing" constant="16" id="zdV-FX-uOZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="articleTitleLabel" destination="dp9-AS-4ZG" id="GCF-qE-VTP"/>
+                                            <outlet property="artitleContentTextView" destination="pQZ-QA-Uig" id="GLG-xX-SFW"/>
+                                            <outlet property="authorNameLabel" destination="m0F-BQ-AoP" id="XFn-QS-zaS"/>
+                                            <outlet property="catagoryLabel" destination="utj-rm-BfQ" id="8bu-QK-vIM"/>
+                                            <outlet property="createdTimeLabel" destination="d4Y-gW-ZH4" id="xke-2J-61U"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -95,7 +102,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Publish"/>
                                 <connections>
-                                    <segue destination="fcM-8p-qAY" kind="show" id="qIX-0f-7wv"/>
+                                    <segue destination="fcM-8p-qAY" kind="show" identifier="PublishButtonSegue" id="qIX-0f-7wv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -111,15 +118,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zxX-6Z-PtM"/>
+                    <connections>
+                        <outlet property="publishTableView" destination="9MS-ku-uAc" id="Nab-It-Uxd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1023.1884057971015" y="84.375"/>
         </scene>
-        <!--View Controller-->
+        <!--Publish Page View Controller-->
         <scene sceneID="vEH-Pt-BKM">
             <objects>
-                <viewController id="fcM-8p-qAY" sceneMemberID="viewController">
+                <viewController id="fcM-8p-qAY" customClass="PublishPageViewController" customModule="Publisher" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Drw-VO-Sl4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,8 +144,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drf-9u-iqa">
-                                <rect key="frame" x="36" y="200" width="342" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drf-9u-iqa">
+                                <rect key="frame" x="36" y="200" width="342" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="jHD-aT-OHT"/>
+                                </constraints>
                                 <string key="text">article contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle content</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -144,12 +157,14 @@
                                 <rect key="frame" x="36" y="433" width="342" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="publish"/>
+                                <connections>
+                                    <action selector="inputPublishButtonPressed:" destination="fcM-8p-qAY" eventType="touchUpInside" id="Bdt-3E-tYq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0Vv-Ad-NBG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FZR-Lj-tHh" firstAttribute="top" secondItem="drf-9u-iqa" secondAttribute="bottom" constant="199" id="1Od-eK-Ys6"/>
                             <constraint firstItem="iy0-WK-rfd" firstAttribute="top" secondItem="0Vv-Ad-NBG" secondAttribute="top" constant="36" id="8qe-UD-3tu"/>
                             <constraint firstItem="FZR-Lj-tHh" firstAttribute="leading" secondItem="0Vv-Ad-NBG" secondAttribute="leading" constant="36" id="C2E-Or-pb4"/>
                             <constraint firstItem="Jsn-hg-oFF" firstAttribute="leading" secondItem="0Vv-Ad-NBG" secondAttribute="leading" constant="36" id="HLc-Vn-Dxa"/>
@@ -157,6 +172,7 @@
                             <constraint firstItem="drf-9u-iqa" firstAttribute="top" secondItem="Jsn-hg-oFF" secondAttribute="bottom" constant="4" id="L4U-f5-XfX"/>
                             <constraint firstItem="0Vv-Ad-NBG" firstAttribute="trailing" secondItem="drf-9u-iqa" secondAttribute="trailing" constant="36" id="Tjw-lg-hJT"/>
                             <constraint firstItem="0Vv-Ad-NBG" firstAttribute="trailing" secondItem="Jsn-hg-oFF" secondAttribute="trailing" constant="36" id="are-gf-306"/>
+                            <constraint firstItem="drf-9u-iqa" firstAttribute="top" secondItem="Jsn-hg-oFF" secondAttribute="bottom" constant="4" id="bRV-KT-HzU"/>
                             <constraint firstItem="iy0-WK-rfd" firstAttribute="leading" secondItem="0Vv-Ad-NBG" secondAttribute="leading" constant="36" id="d7D-Up-dI0"/>
                             <constraint firstItem="0Vv-Ad-NBG" firstAttribute="bottom" secondItem="FZR-Lj-tHh" secondAttribute="bottom" constant="398" id="hbd-sN-ZZo"/>
                             <constraint firstItem="0Vv-Ad-NBG" firstAttribute="trailing" secondItem="iy0-WK-rfd" secondAttribute="trailing" constant="36" id="oPh-OB-PqY"/>
@@ -165,6 +181,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7B5-Sq-YWB"/>
+                    <connections>
+                        <outlet property="inputCatagoryTextField" destination="Jsn-hg-oFF" id="9a0-C9-GL8"/>
+                        <outlet property="inputContentTextField" destination="drf-9u-iqa" id="a4X-vn-3jf"/>
+                        <outlet property="inputPublishButton" destination="FZR-Lj-tHh" id="14x-Ld-12S"/>
+                        <outlet property="inputTitleTextField" destination="iy0-WK-rfd" id="l8m-sk-2w6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rkf-bc-03h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

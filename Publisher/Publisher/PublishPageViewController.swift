@@ -9,10 +9,18 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class ViewController: UIViewController {
+class PublishPageViewController: UIViewController {
     
     var db: Firestore!
 
+    @IBOutlet weak var inputTitleTextField: UITextField!
+    
+    @IBOutlet weak var inputCatagoryTextField: UITextField!
+    
+    @IBOutlet weak var inputContentTextField: UITextField!
+    
+    @IBOutlet weak var inputPublishButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,7 +28,10 @@ class ViewController: UIViewController {
         
     }
 
-
+    @IBAction func inputPublishButtonPressed(_ sender: Any) {
+        
+    }
+    
     
    func addData() {
    let articles = Firestore.firestore().collection("articles")
