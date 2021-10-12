@@ -25,15 +25,11 @@ class HomePageViewController: UIViewController {
         publishTableView.delegate = self
         publishTableView.dataSource = self
         
-        readPublishLists()
         getRealTimePublishLists()
+        readPublishLists()
     }
 
-    var publishList = PublishList(author: [], title: "", id: "", catagory: "", contents: "") {
-        didSet {
-            publishTableView.reloadData()
-        }
-    }
+    var publishList = PublishList(author: [], title: "", id: "", catagory: "", contents: "")
     
     var author = Author()
     
@@ -59,6 +55,9 @@ class HomePageViewController: UIViewController {
         
         db.collection("articles").getDocuments { [self] snapshot, eror in
             guard let snapshot = snapshot else { return }
+            
+            titleLists = []
+
             if snapshot.documents.isEmpty {
                 print("no match doc")
             } else {
@@ -82,27 +81,45 @@ class HomePageViewController: UIViewController {
                 }
             }
         }
-//        publishTableView.reloadData()
     }
     
     // MARK: - get real time data from firebase
     func getRealTimePublishLists() {
-        
-//        publishLists = []
-        
+                
         db.collection("articles").addSnapshotListener{ [self] (queryDocumentSnapshot, error) in
             guard let documents = queryDocumentSnapshot?.documents else {
                 print("no document")
                 return
             }
-            
-//            publishLists = []
+
+            titleLists = []
+            categoryList = []
+            contentLists = []
             
             documents.forEach { document in
-                
+                                
                 print(document.data())
                 
-                publishLists.append(document.data())
+//                publishLists.append(document.data())
+                
+                guard let title = document.get("title") as? String else {
+                    print("can't get title")
+                    return
+                }
+                
+                guard let content = document.get("content") as? String else {
+                    print("can't get content")
+                    return
+                }
+                
+                guard let category = document.get("category") as? String else {
+                    print("can't get category")
+                    return
+                }
+                
+                titleLists.append(title)
+                categoryList.append(category)
+                contentLists.append(content)
             }
             print("===========================================")
         }
