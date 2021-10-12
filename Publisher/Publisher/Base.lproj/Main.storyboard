@@ -102,6 +102,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Publish"/>
                                 <connections>
+                                    <action selector="publishButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4w9-rr-1pH"/>
                                     <segue destination="fcM-8p-qAY" kind="show" identifier="PublishButtonSegue" id="qIX-0f-7wv"/>
                                 </connections>
                             </button>

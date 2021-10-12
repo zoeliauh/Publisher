@@ -12,12 +12,9 @@ import FirebaseFirestore
 class HomePageViewController: UIViewController {
     
     @IBOutlet weak var publishTableView: UITableView!
-
-    
-//    @IBOutlet weak var publishButton: UIButton!
     
     var db: Firestore!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,13 +22,45 @@ class HomePageViewController: UIViewController {
         
         publishTableView.delegate = self
         publishTableView.dataSource = self
+        
+        getRealTimePublish()
     }
     
-//    @IBAction func publishButtonPressed(_ sender: Any) {
-//        
-//        
-//    }
-
+    var publishList = PublishList(author: "", title: "", id: "", catagory: "", contents: "", createdTime: FieldValue.serverTimestamp())
+    
+    var publishLists: [Any] = []
+    
+    
+    @IBAction func publishButtonPressed(_ sender: Any) {
+        
+        
+    }
+    
+    func getRealTimePublish() {
+        
+        publishLists = []
+        
+        db.collection("data").addSnapshotListener{ [self] (queryDocumentSnapshot, error) in
+            guard let documents = queryDocumentSnapshot?.documents else {
+                print("no document")
+                return
+            }
+            
+            publishLists = []
+            
+            documents.forEach { document in
+                guard let author = document.get("author") as? String else {
+                    print("")
+                    return
+                }
+                
+                if author == "AKA小安老師" {
+                    print(document.data())
+                    publishLists.append(author)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - TableViewDataSource
@@ -46,6 +75,10 @@ extension HomePageViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArtitleTableViewCell", for: indexPath) as? ArtitleTableViewCell else { fatalError("can not dequeue cell") }
         
         cell.articleTitleLabel.text = "articleTitle"
+        cell.authorNameLabel.text = "Wayne Chen"
+        cell.createdTimeLabel.text = "\(NSDate().timeIntervalSince1970)"
+        cell.catagoryLabel.text = "beauty"
+        cell.artitleContentTextView.text = "contentcontentcontentcontentcontentcontent"
         
         return cell
         
