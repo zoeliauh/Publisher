@@ -26,7 +26,7 @@ class HomePageViewController: UIViewController {
         publishTableView.dataSource = self
         
         readPublishLists()
-//        getRealTimePublishLists()
+        getRealTimePublishLists()
     }
 
     var publishList = PublishList(author: [], title: "", id: "", catagory: "", contents: "") {
@@ -56,7 +56,6 @@ class HomePageViewController: UIViewController {
     
     // MARK: - read the data from firebase
     func readPublishLists() {
-//        titleLists = []
         
         db.collection("articles").getDocuments { [self] snapshot, eror in
             guard let snapshot = snapshot else { return }
@@ -83,7 +82,7 @@ class HomePageViewController: UIViewController {
                 }
             }
         }
-        publishTableView.reloadData()
+//        publishTableView.reloadData()
     }
     
     // MARK: - get real time data from firebase
@@ -97,20 +96,15 @@ class HomePageViewController: UIViewController {
                 return
             }
             
-            publishLists = []
+//            publishLists = []
             
             documents.forEach { document in
-                guard let author = document.get("author") as? String else {
-                    print("")
-                    return
-                }
                 
-                if author == "AKA小安老師" {
-                    print(document.data())
-                    print("AKA小安老師")
-//                    publishLists.append(author)
-                }
+                print(document.data())
+                
+                publishLists.append(document.data())
             }
+            print("===========================================")
         }
     }
 }

@@ -60,6 +60,9 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pQZ-QA-Uig">
                                                     <rect key="frame" x="36" y="114" width="342" height="96"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="96" id="4Y6-Vr-Hor"/>
+                                                    </constraints>
                                                     <string key="text">article contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle contentarticle content</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
