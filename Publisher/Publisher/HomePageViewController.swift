@@ -17,8 +17,14 @@ class HomePageViewController: UIViewController {
     
     var createdTime = NSDate().timeIntervalSince1970
     
-    let date = NSDate().timeIntervalSince1970
-    
+//    var timeInterval = TimeInterval(createdTime)
+//    var date = Date(timeIntervalSince1970: timeInterval)
+    var dateFormatter = DateFormatter()
+//    dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+//    var today = dateFormatter.string(from: date)
+
+
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -151,11 +157,15 @@ extension HomePageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        let date = Date(timeIntervalSince1970: TimeInterval(createdTimeList[indexPath.row]) ?? 0.0)
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArtitleTableViewCell", for: indexPath) as? ArtitleTableViewCell else { fatalError("can not dequeue cell") }
         
         cell.articleTitleLabel.text = titleLists[indexPath.row]
         cell.authorNameLabel.text = author.name
-        cell.createdTimeLabel.text = createdTimeList[indexPath.row]
+        cell.createdTimeLabel.text = dateFormatter.string(from: date)
         cell.catagoryLabel.text = categoryLists[indexPath.row]
         cell.artitleContentTextView.text = contentLists[indexPath.row]
         
